@@ -52,10 +52,10 @@ namespace ColorMine.ColorSpaces.Comparisons
             var c2 = Math.Sqrt(bLab.A * bLab.A + bLab.B * bLab.B);
             var deltaC = c1 - c2;
 
-            var deltaH = Math.Sqrt(
+            var deltaH_2 = 
                 (aLab.A - bLab.A) * (aLab.A - bLab.A) +
                 (aLab.B - bLab.B) * (aLab.B - bLab.B) - 
-                deltaC * deltaC);
+                deltaC * deltaC;
 
             var c1_4 = c1 * c1;
             c1_4 *= c1_4;
@@ -70,7 +70,7 @@ namespace ColorMine.ColorSpaces.Comparisons
 
             var differences = DistanceDivided(deltaL, _lightness * sL) +
                               DistanceDivided(deltaC, _chroma * sC) +
-                              DistanceDivided(deltaH, sH);
+                              deltaH_2 / (sH * sH);
 
             return Math.Sqrt(differences);
         }

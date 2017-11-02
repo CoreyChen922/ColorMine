@@ -100,6 +100,27 @@ namespace ColorMine.Test.ColorSpaces.Comparisons
 
                 ReturnsExpectedValueForKnownInput(25.103175, 1, a, b);
             }
+
+            [TestMethod]
+            public void ReturnsKnownValueForBlackAndGray()
+            {
+                // Todo, should be mocking!!
+                var a = new Lab
+                {
+                    L = 0.0,
+                    A = 0.0,
+                    B = 0.0
+                };
+
+                var b = new Lab
+                {
+                    L = 41.41,
+                    A = 2.64,
+                    B = 4.15
+                };
+
+                ReturnsExpectedValueForKnownInput(81.403062, 1, a, b);
+            }
         }
     }
 }
