@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Reflection;
+using System.Globalization;
 using ColorMine.ColorSpaces;
 using ColorMine.ColorSpaces.Comparisons;
 using ColorMine.ColorSpaces.Conversions.Utility;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Reflection;
 
 namespace ColorMine.Test.ColorSpaces.Comparisons
 {
@@ -46,18 +47,18 @@ namespace ColorMine.Test.ColorSpaces.Comparisons
                             var parts = line.Split('\t');
                             var a = new Lab
                             {
-                                L = Double.Parse(parts[0]),
-                                A = Double.Parse(parts[1]),
-                                B = Double.Parse(parts[2])
+                                L = Double.Parse(parts[0], CultureInfo.InvariantCulture),
+                                A = Double.Parse(parts[1], CultureInfo.InvariantCulture),
+                                B = Double.Parse(parts[2], CultureInfo.InvariantCulture)
                             };
                             var b = new Lab
                             {
-                                L = Double.Parse(parts[3]),
-                                A = Double.Parse(parts[4]),
-                                B = Double.Parse(parts[5])
+                                L = Double.Parse(parts[3], CultureInfo.InvariantCulture),
+                                A = Double.Parse(parts[4], CultureInfo.InvariantCulture),
+                                B = Double.Parse(parts[5], CultureInfo.InvariantCulture)
                             };
                             var input = new Tuple<ILab, ILab>(a, b);
-                            var expected = Double.Parse(parts[6]);
+                            var expected = Double.Parse(parts[6], CultureInfo.InvariantCulture);
                             TestData[input] = expected;
                         }
                     }
