@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ColorMine.ColorSpaces.Utility;
+using System;
 
 namespace ColorMine.ColorSpaces.Comparisons
 {
@@ -39,8 +40,8 @@ namespace ColorMine.ColorSpaces.Comparisons
             double C_prime_1 = Math.Sqrt(a1_prime * a1_prime + lab1.B * lab1.B);
             double C_prime_2 = Math.Sqrt(a2_prime * a2_prime + lab2.B * lab2.B);
             //Angles in Degree.
-            double h_prime_1 = ((Math.Atan2(lab1.B, a1_prime) * 180d / Math.PI) + 360) % 360d;
-            double h_prime_2 = ((Math.Atan2(lab2.B, a2_prime) * 180d / Math.PI) + 360) % 360d;
+            double h_prime_1 = (MathUtils.RadToDeg(Math.Atan2(lab1.B, a1_prime)) + 360) % 360d;
+            double h_prime_2 = (MathUtils.RadToDeg(Math.Atan2(lab2.B, a2_prime)) + 360) % 360d;
 
             double delta_L_prime = lab2.L - lab1.L;
             double delta_C_prime = C_prime_2 - C_prime_1;
@@ -63,7 +64,7 @@ namespace ColorMine.ColorSpaces.Comparisons
                     delta_h_prime = h_prime_2 - h_prime_1 - 360.0;
                 }
             }
-            double delta_H_prime = 2 * Math.Sqrt(C_prime_1 * C_prime_2) * Math.Sin(delta_h_prime * Math.PI / 360d);
+            double delta_H_prime = 2 * Math.Sqrt(C_prime_1 * C_prime_2) * Math.Sin(MathUtils.DegToRad(delta_h_prime / 2));
 
             // Calculate CIEDE2000
             double L_prime_average = (lab1.L + lab2.L) / 2d;
@@ -94,10 +95,10 @@ namespace ColorMine.ColorSpaces.Comparisons
             double S_L = 1 + ((.015d * L_prime_average_minus_50_square) / Math.Sqrt(20 + L_prime_average_minus_50_square));
             double S_C = 1 + .045d * C_prime_average;
             double T = 1
-                - .17 * Math.Cos(DegToRad(h_prime_average - 30))
-                + .24 * Math.Cos(DegToRad(h_prime_average * 2))
-                + .32 * Math.Cos(DegToRad(h_prime_average * 3 + 6))
-                - .2 * Math.Cos(DegToRad(h_prime_average * 4 - 63));
+                - .17 * Math.Cos(MathUtils.DegToRad(h_prime_average - 30))
+                + .24 * Math.Cos(MathUtils.DegToRad(h_prime_average * 2))
+                + .32 * Math.Cos(MathUtils.DegToRad(h_prime_average * 3 + 6))
+                - .2 * Math.Cos(MathUtils.DegToRad(h_prime_average * 4 - 63));
             double S_H = 1 + .015 * T * C_prime_average;
             double h_prime_average_minus_275_div_25_square = (h_prime_average - 275) / (25);
             h_prime_average_minus_275_div_25_square *= h_prime_average_minus_275_div_25_square;
@@ -107,7 +108,7 @@ namespace ColorMine.ColorSpaces.Comparisons
             C_prime_average_pot_7 *= C_prime_average_pot_7 * C_prime_average;
             double R_C = 2 * Math.Sqrt(C_prime_average_pot_7 / (C_prime_average_pot_7 + 6103515625));
 
-            double R_T = -Math.Sin(DegToRad(2 * delta_theta)) * R_C;
+            double R_T = -Math.Sin(MathUtils.DegToRad(2 * delta_theta)) * R_C;
 
             double delta_L_prime_div_k_L_S_L = delta_L_prime / (S_L * k_L);
             double delta_C_prime_div_k_C_S_C = delta_C_prime / (S_C * k_C);
@@ -121,10 +122,6 @@ namespace ColorMine.ColorSpaces.Comparisons
                 );
 
             return CIEDE2000;
-        }
-        private double DegToRad(double degrees)
-        {
-            return degrees * Math.PI / 180;
         }
     }
 }

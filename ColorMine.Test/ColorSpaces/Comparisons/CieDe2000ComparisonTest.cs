@@ -4,7 +4,7 @@ using System.Reflection;
 using System.Globalization;
 using ColorMine.ColorSpaces;
 using ColorMine.ColorSpaces.Comparisons;
-using ColorMine.ColorSpaces.Conversions.Utility;
+using ColorMine.ColorSpaces.Utility;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ColorMine.Test.ColorSpaces.Comparisons

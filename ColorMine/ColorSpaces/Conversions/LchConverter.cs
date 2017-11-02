@@ -1,4 +1,5 @@
-﻿using System;
+﻿using ColorMine.ColorSpaces.Utility;
+using System;
 
 namespace ColorMine.ColorSpaces.Conversions
 {
@@ -7,17 +8,7 @@ namespace ColorMine.ColorSpaces.Conversions
         internal static void ToColorSpace(IRgb color, ILch item)
         {
             var lab = color.To<Lab>();
-            var h = Math.Atan2(lab.B, lab.A);
-
-            // convert from radians to degrees
-            if (h > 0)
-            {
-                h = (h / Math.PI) * 180.0;
-            }
-            else
-            {
-                h = 360 - (Math.Abs(h) / Math.PI) * 180.0;
-            }
+            var h = MathUtils.RadToDeg(Math.Atan2(lab.B, lab.A));
 
             if (h < 0)
             {
@@ -35,7 +26,7 @@ namespace ColorMine.ColorSpaces.Conversions
 
         internal static IRgb ToColor(ILch item)
         {
-            var hRadians = item.H * Math.PI / 180.0;
+            var hRadians = MathUtils.DegToRad(item.H);
             var lab = new Lab
                 {
                     L = item.L,
