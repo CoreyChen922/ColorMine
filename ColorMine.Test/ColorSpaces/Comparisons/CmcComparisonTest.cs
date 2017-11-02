@@ -35,9 +35,8 @@ namespace ColorMine.Test.ColorSpaces.Comparisons
                     B = 67.2200
                 };
 
-                ReturnsExpectedValueForKnownInput(23.9165, 2, a, b);
+                ReturnsExpectedValueForKnownInput(24.143033, 2, a, b);
             }
-
 
             [TestMethod]
             public void ReturnsKnownValueForRedAndMaroon1()
@@ -57,7 +56,7 @@ namespace ColorMine.Test.ColorSpaces.Comparisons
                     B = 67.2200
                 };
 
-                ReturnsExpectedValueForKnownInput(42.202017, 1, a, b);
+                ReturnsExpectedValueForKnownInput(42.330795, 1, a, b);
             }
 
             [TestMethod]
