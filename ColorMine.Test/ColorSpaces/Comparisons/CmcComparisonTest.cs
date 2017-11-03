@@ -1,6 +1,6 @@
 ﻿using ColorMine.ColorSpaces;
 using ColorMine.ColorSpaces.Comparisons;
-using ColorMine.ColorSpaces.Conversions.Utility;
+using ColorMine.ColorSpaces.Utility;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace ColorMine.Test.ColorSpaces.Comparisons
@@ -35,9 +35,8 @@ namespace ColorMine.Test.ColorSpaces.Comparisons
                     B = 67.2200
                 };
 
-                ReturnsExpectedValueForKnownInput(23.9165, 2, a, b);
+                ReturnsExpectedValueForKnownInput(24.143033, 2, a, b);
             }
-
 
             [TestMethod]
             public void ReturnsKnownValueForRedAndMaroon1()
@@ -57,7 +56,7 @@ namespace ColorMine.Test.ColorSpaces.Comparisons
                     B = 67.2200
                 };
 
-                ReturnsExpectedValueForKnownInput(42.202017, 1, a, b);
+                ReturnsExpectedValueForKnownInput(42.330795, 1, a, b);
             }
 
             [TestMethod]
@@ -100,6 +99,27 @@ namespace ColorMine.Test.ColorSpaces.Comparisons
                 };
 
                 ReturnsExpectedValueForKnownInput(25.103175, 1, a, b);
+            }
+
+            [TestMethod]
+            public void ReturnsKnownValueForBlackAndGray()
+            {
+                // Todo, should be mocking!!
+                var a = new Lab
+                {
+                    L = 0.0,
+                    A = 0.0,
+                    B = 0.0
+                };
+
+                var b = new Lab
+                {
+                    L = 41.41,
+                    A = 2.64,
+                    B = 4.15
+                };
+
+                ReturnsExpectedValueForKnownInput(81.403062, 1, a, b);
             }
         }
     }

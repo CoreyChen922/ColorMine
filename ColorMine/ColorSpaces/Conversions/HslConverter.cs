@@ -1,6 +1,4 @@
-﻿using ColorMine.ColorSpaces.Conversions.Utility;
-using System;
-using static System.Math;
+﻿using static System.Math;
 
 namespace ColorMine.ColorSpaces.Conversions
 {

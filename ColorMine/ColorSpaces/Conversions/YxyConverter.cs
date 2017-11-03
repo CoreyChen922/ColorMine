@@ -1,4 +1,4 @@
-﻿using ColorMine.ColorSpaces.Conversions.Utility;
+﻿using ColorMine.ColorSpaces.Utility;
 
 namespace ColorMine.ColorSpaces.Conversions
 {
