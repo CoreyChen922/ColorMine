@@ -1,4 +1,7 @@
-# ColorMine
+I haven't done much work on this library in a long time, you should check out Colourful, It's a great library with some fantastic features:
+https://github.com/tompazourek/Colourful
+
+# What is ColorMine?
 
 MIT Licensed .Net library that makes converting between color spaces and comparing colors easy.
 
